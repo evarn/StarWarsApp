@@ -12,8 +12,8 @@ const RootTab = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveBackgroundColor: Colors.PRIMATY,
-        tabBarInactiveBackgroundColor: Colors.SECONDARY,
+        tabBarActiveBackgroundColor: Colors.BLUE_3,
+        tabBarInactiveBackgroundColor: Colors.WHITE,
         headerShown: false,
       }}>
       <Tab.Screen name={Screens.HOME} component={HomeScreens} />
