@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Button,
-  Pressable,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 import Colors from '../../constants/colors';
 import DeathStar_SVG from '../../../assets/icons/teamRocket.svg';
@@ -71,6 +64,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: '700',
     fontSize: 23,
+    color: Colors.BLACK_2,
   },
 });
 
