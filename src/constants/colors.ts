@@ -1,11 +1,11 @@
 enum Colors {
-  WHITE = '#FFFFFF',
+  WHITE_1 = '#FFFFFF',
   GRAY_1 = '#4B4B4B',
   GRAY_2 = '#F0F0F0',
   BLACK_1 = '#000000',
   BLACK_2 = '#212121',
-  GREEN = '#73D677',
-  VIOLET = '#C956FF',
+  GREEN_1 = '#73D677',
+  VIOLET_1 = '#C956FF',
 
   BLUE_1 = '#07D6F2',
   BLUE_2 = '#17002F',
