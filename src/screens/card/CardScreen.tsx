@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
-import Colors from '@app/constants/colors';
+import Colors from '../../constants/colors';
 
 const CardScreen = () => {
   return (

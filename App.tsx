@@ -1,22 +1,18 @@
 import React from 'react';
-
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import Navigation from './src/navigation/index';
+import {StatusBar} from 'react-native';
+import {
+  initialWindowMetrics,
+  SafeAreaProvider,
+} from 'react-native-safe-area-context';
 
 function App(): JSX.Element {
   return (
-    <SafeAreaView style={styles.mainContainer}>
-      <Text>{'Main'}</Text>
-    </SafeAreaView>
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      <StatusBar />
+      <Navigation />
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default App;
