@@ -5,6 +5,7 @@ import Colors from '../../constants/colors';
 import {Screens} from '../../navigation/constants/screens';
 import HomeScreens from '../../screens/home/HomeScreens';
 import CardScreen from '../../screens/card/CardScreen';
+import ErrorScreen404 from './../../screens/errors/ErrorScreen404';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,6 +19,7 @@ const RootTab = () => {
       }}>
       <Tab.Screen name={Screens.HOME} component={HomeScreens} />
       <Tab.Screen name={Screens.CARD} component={CardScreen} />
+      <Tab.Screen name={Screens.ERROR_404} component={ErrorScreen404} />
     </Tab.Navigator>
   );
 };
