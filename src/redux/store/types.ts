@@ -4,6 +4,7 @@ export interface ICard {
   count: number;
   next: string;
   previous?: string | null;
+  moreIsLoading: boolean;
 }
 
 export interface IPeopleCard {
