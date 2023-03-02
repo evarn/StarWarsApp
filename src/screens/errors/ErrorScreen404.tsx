@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     maxWidth: '50%',
   },
   btn: {
-    backgroundColor: Colors.GREEN_1,
+    backgroundColor: Colors.YELLOW_1,
     borderRadius: 11,
     width: 231,
     height: 66,
