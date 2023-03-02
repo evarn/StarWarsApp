@@ -21,11 +21,7 @@ const CharacterTabBarIcon = () => {
 
 const RootTab = () => {
   const _headerRight = () => {
-    return (
-      <>
-        <LogoSVG style={styles.logo} height={50} />
-      </>
-    );
+    return <LogoSVG height={50} />;
   };
 
   return (
@@ -34,6 +30,7 @@ const RootTab = () => {
         tabBarActiveBackgroundColor: Colors.BLUE_2,
         tabBarInactiveBackgroundColor: Colors.BLUE_3,
         headerShown: true,
+        tabBarStyle: {borderTopColor: Colors.YELLOW_1},
       }}>
       <Tab.Screen
         name={Screens.HOME}
@@ -64,6 +61,7 @@ const RootTab = () => {
           tabBarLabelStyle: {
             color: Colors.YELLOW_1,
           },
+
           headerRight: _headerRight,
         }}
       />
@@ -77,9 +75,4 @@ const RootTab = () => {
     </Tab.Navigator>
   );
 };
-const styles = StyleSheet.create({
-  logo: {
-    marginVertical: 4,
-  },
-});
 export default RootTab;
