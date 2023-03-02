@@ -30,6 +30,7 @@ const RootTab = () => {
         tabBarActiveBackgroundColor: Colors.BLUE_2,
         tabBarInactiveBackgroundColor: Colors.BLUE_3,
         headerShown: true,
+        tabBarStyle: {borderTopColor: Colors.YELLOW_1},
       }}>
       <Tab.Screen
         name={Screens.HOME}
@@ -60,6 +61,7 @@ const RootTab = () => {
           tabBarLabelStyle: {
             color: Colors.YELLOW_1,
           },
+
           headerRight: _headerRight,
         }}
       />

@@ -12,7 +12,9 @@ const RootNavigator = () => {
       <MainStack.Screen
         name={Screens.TAB}
         component={RootTab}
-        options={{headerShown: false}}
+        options={{
+          headerShown: false,
+        }}
       />
     </MainStack.Navigator>
   );

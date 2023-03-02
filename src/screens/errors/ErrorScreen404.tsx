@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 import Colors from '../../constants/colors';
 import DeathStar_SVG from '../../../assets/icons/teamRocket.svg';
@@ -7,8 +7,8 @@ import ERROR404_SVG from '../../../assets/icons/404.svg';
 import {useNavigation} from '@react-navigation/native';
 import {NavigationType} from '../../navigation/types';
 import Strings from './../../constants/strings';
-import Fonts from './../../constants/fonts';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import AppButton from '../components/appButton/AppButton';
 
 const ErrorScreen404 = () => {
   const navigation = useNavigation<NavigationType>();
@@ -20,10 +20,11 @@ const ErrorScreen404 = () => {
     <SafeAreaView style={styles.mainContainer}>
       <DeathStar_SVG style={styles.svg_DeathStar} />
       <ERROR404_SVG style={styles.svg_404} />
-
-      <TouchableOpacity style={styles.btn} onPress={onPressReturn}>
-        <Text style={styles.text_btn}>{Strings.ERROR_404_BUTTON_TITLE}</Text>
-      </TouchableOpacity>
+      <AppButton
+        title={Strings.ERROR_404_BUTTON_TITLE}
+        onPressButton={onPressReturn}
+        styleView={styles.btn}
+      />
     </SafeAreaView>
   );
 };
@@ -49,22 +50,8 @@ const styles = StyleSheet.create({
     maxWidth: '50%',
   },
   btn: {
-    backgroundColor: Colors.YELLOW_1,
-    borderRadius: 11,
-    width: 231,
-    height: 66,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 50,
     position: 'absolute',
     bottom: 35,
-  },
-  text_btn: {
-    fontFamily: Fonts.PRIMARY,
-    fontStyle: 'normal',
-    fontWeight: '700',
-    fontSize: 23,
-    color: Colors.BLACK_2,
   },
 });
 

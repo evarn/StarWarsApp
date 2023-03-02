@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import {StyleSheet, View, Text, ScrollView} from 'react-native';
 import Strings from './../../constants/strings';
 import Colors from '../../constants/colors';
 import BannerSVG from '../../../assets/icons/banner.svg';
@@ -13,6 +7,8 @@ import Fonts from './../../constants/fonts';
 import {useNavigation} from '@react-navigation/native';
 import {NavigationType} from '../../navigation/types';
 import {Screens} from '../../navigation/constants/screens';
+import TitlleText from './components/TitlleText';
+import AppButton from '../components/appButton/AppButton';
 
 const HomeScreens = () => {
   const navigation = useNavigation<NavigationType>();
@@ -22,34 +18,34 @@ const HomeScreens = () => {
 
   return (
     <View style={styles.mainContainer}>
-      <Text style={styles.textTitle}>{Strings.HOME_TITLE_TEXT}</Text>
-
-      <BannerSVG style={styles.svg} height={'60%'} />
-
-      <Text style={styles.textSubTitle}>{Strings.HOME_SUBTITLE_TEXT}</Text>
-      <TouchableOpacity style={styles.btn} onPress={onPressGoCharacter}>
-        <Text style={styles.text_btn}>{Strings.HOME_BUTTON_TITLE}</Text>
-      </TouchableOpacity>
+      <ScrollView style={styles.scrollView}>
+        <TitlleText />
+        <BannerSVG style={styles.svg} />
+        <Text style={styles.textSubTitle}>{Strings.HOME_SUBTITLE_TEXT}</Text>
+        <AppButton
+          title={Strings.HOME_BUTTON_TITLE}
+          onPressButton={onPressGoCharacter}
+        />
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flex: 1,
     alignItems: 'center',
-
+    flex: 1,
     backgroundColor: Colors.BLUE_2,
-    padding: 20,
+    maxHeight: '100%',
+    maxWidth: '100%',
   },
-  svg: {},
-  textTitle: {
-    color: Colors.WHITE_1,
-    fontFamily: Fonts.PRIMARY,
-    fontStyle: 'normal',
-    fontWeight: '700',
-    fontSize: 36,
-    letterSpacing: 4,
+  scrollView: {
+    flex: 1,
+    maxWidth: '100%',
+  },
+  svg: {
+    maxHeight: '60%',
+    alignSelf: 'center',
   },
   textSubTitle: {
     color: Colors.WHITE_1,
@@ -58,23 +54,8 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: 16,
     textAlign: 'center',
-    marginTop: 40,
-  },
-  btn: {
-    backgroundColor: Colors.YELLOW_1,
-    borderRadius: 11,
-    width: 231,
-    height: 66,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 50,
-  },
-  text_btn: {
-    fontFamily: Fonts.PRIMARY,
-    fontStyle: 'normal',
-    fontWeight: '700',
-    fontSize: 23,
-    color: Colors.BLACK_2,
+    maxWidth: '80%',
+    alignSelf: 'center',
   },
 });
 
