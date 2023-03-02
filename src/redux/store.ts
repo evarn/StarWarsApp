@@ -17,7 +17,7 @@ export const store = configureStore({
         createDebugger is required for the redux-flipper application.
         It is convenient to debug the application in it: state, warnings...
       */
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
+
       const createDebugger = require('redux-flipper').default;
       defaultMiddleware.push(createDebugger());
     }

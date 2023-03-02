@@ -1,12 +1,7 @@
-export interface ICard {
-  people: IPeopleCard[];
-  isLoading: boolean;
-  count: number;
+export interface IListPeopleRequest {
   next: string;
-  previous?: string | null;
 }
-
-export interface IPeopleCard {
+export interface IPeopleRequest {
   name: string;
   height: string;
   mass: string;
@@ -24,3 +19,9 @@ export interface IPeopleCard {
   edited: string;
   url: string;
 }
+export type ListPeopleRespone = {
+  count: number;
+  next: string;
+  previous: string;
+  results: IPeopleRequest[];
+};
