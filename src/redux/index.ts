@@ -1,8 +1,8 @@
 import {combineReducers} from '@reduxjs/toolkit';
-import cardSlice from './store/cardSlice';
+import characterSlice from './store/characterSlice';
 
 const rootReducer = combineReducers({
-  card: cardSlice,
+  character: characterSlice,
 });
 
 export default rootReducer;
