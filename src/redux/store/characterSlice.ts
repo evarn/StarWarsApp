@@ -7,6 +7,7 @@ const initialState: ICard = {
   count: 0,
   next: 'https://swapi.dev/api/people/?page=1',
   previous: '',
+  moreIsLoading: false,
 };
 
 export const characterSlice = createSlice({
@@ -28,9 +29,18 @@ export const characterSlice = createSlice({
     setPrevious: (state, action: PayloadAction<string>) => {
       state.previous = action.payload;
     },
+    setMoreIsLoading: (state, action: PayloadAction<boolean>) => {
+      state.moreIsLoading = action.payload;
+    },
   },
 });
 
-export const {setPeople, setIsLoading, setCount, setNext, setPrevious} =
-  characterSlice.actions;
+export const {
+  setPeople,
+  setIsLoading,
+  setCount,
+  setNext,
+  setPrevious,
+  setMoreIsLoading,
+} = characterSlice.actions;
 export default characterSlice.reducer;
