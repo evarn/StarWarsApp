@@ -21,11 +21,7 @@ const CharacterTabBarIcon = () => {
 
 const RootTab = () => {
   const _headerRight = () => {
-    return (
-      <>
-        <LogoSVG style={styles.logo} height={50} />
-      </>
-    );
+    return <LogoSVG height={50} />;
   };
 
   return (
@@ -77,9 +73,4 @@ const RootTab = () => {
     </Tab.Navigator>
   );
 };
-const styles = StyleSheet.create({
-  logo: {
-    marginVertical: 4,
-  },
-});
 export default RootTab;
