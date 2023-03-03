@@ -7,7 +7,7 @@ import Fonts from './../../../constants/fonts';
 interface ICardCharacter {
   title: string;
   style?: StyleProp<ViewStyle>;
-  param: string;
+  param: string | undefined;
 }
 
 const CircleCharacter = ({title, style, param}: ICardCharacter) => {

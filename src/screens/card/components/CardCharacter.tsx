@@ -1,31 +1,35 @@
-import React from 'react';
+import React, {Dispatch} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import Fonts from '../../../constants/fonts';
 import Colors from '../../../constants/colors';
 import CircleCharacter from './Circle';
-
-interface ICardCharacter {
-  item: {
-    name: string;
-    height: string;
-    mass: string;
-    hair_color: string;
-    skin_color: string;
-    eye_color: string;
-    birth_year: string;
-    gender: string;
-    homeworld: string;
-    films: string[];
-    species: string[];
-    vehicles: string[];
-    starships: string[];
-    created: string;
-    edited: string;
-    url: string;
-  };
-  widthSIZE?: string | number | undefined;
+import {setSelectedPeople} from '../../../redux/store/characterSlice';
+import {useAppDispatch} from '../../../redux/hooks';
+interface ICharacter {
+  name: string;
+  height: string;
+  mass: string;
+  hair_color: string;
+  skin_color: string;
+  eye_color: string;
+  birth_year: string;
+  gender: string;
+  homeworld: string;
+  films: string[];
+  species: string[];
+  vehicles: string[];
+  starships: string[];
+  created: string;
+  edited: string;
+  url: string;
 }
-const CardCharacter = ({item, widthSIZE}: ICardCharacter) => {
+interface ICardCharacter {
+  item: ICharacter;
+  widthSIZE?: string | number | undefined;
+  setModalVisible: Dispatch<React.SetStateAction<boolean>>;
+}
+const CardCharacter = ({item, widthSIZE, setModalVisible}: ICardCharacter) => {
+  const dispatch = useAppDispatch();
   const {name, mass, height, birth_year, gender} = item;
 
   const getCheckColor = (check: string) => {
@@ -41,8 +45,15 @@ const CardCharacter = ({item, widthSIZE}: ICardCharacter) => {
     return true;
   };
 
+  const onPressCard = (items: ICharacter) => {
+    dispatch(setSelectedPeople(items));
+    setModalVisible(true);
+  };
+
   return (
-    <TouchableOpacity style={[styles.mainContainer, {width: widthSIZE}]}>
+    <TouchableOpacity
+      style={[styles.mainContainer, {width: widthSIZE}]}
+      onPress={() => onPressCard(item)}>
       <Text style={styles.name}>{name}</Text>
       <View style={styles.circleContainer}>
         {height !== 'unknown' && (
@@ -82,7 +93,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     marginTop: 24,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     backgroundColor: Colors.GRAY_2,
     paddingHorizontal: 20,
     paddingVertical: 8,

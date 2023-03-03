@@ -1,5 +1,5 @@
 import {getListPeople} from '../../api/rest/people/people';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -24,11 +24,15 @@ import CardCharacter from './components/CardCharacter';
 import TitleCardScreen from './components/TitleCardScreen';
 import Strings from './../../constants/strings';
 import Fonts from './../../constants/fonts';
+import ModalCharacter from './components/ModalCharacter';
 
 const CardScreen = () => {
   const dispatch = useAppDispatch();
   const {isLoading, count, next, people, moreIsLoading} =
     useAppSelector(selectCharcterData);
+
+  const [modalVisible, setModalVisible] = useState(false);
+
   useEffect(() => {
     onFetchPeople(next);
   }, []);
@@ -96,10 +100,18 @@ const CardScreen = () => {
         <LoadingIndicator />
       ) : (
         <View style={styles.flatListView}>
+          <ModalCharacter
+            modalVisible={modalVisible}
+            setModalVisible={setModalVisible}
+          />
           <FlatList
             data={people}
             renderItem={({item}) => (
-              <CardCharacter item={item} widthSIZE={widthSIZE} />
+              <CardCharacter
+                item={item}
+                widthSIZE={widthSIZE}
+                setModalVisible={setModalVisible}
+              />
             )}
             numColumns={column}
             columnWrapperStyle={styles.row}
