@@ -18,7 +18,9 @@ const HomeScreens = () => {
 
   return (
     <View style={styles.mainContainer}>
-      <ScrollView style={styles.scrollView}>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.contentContainerStyle}>
         <TitlleText />
         <BannerSVG style={styles.svg} />
         <Text style={styles.textSubTitle}>{Strings.HOME_SUBTITLE_TEXT}</Text>
@@ -42,6 +44,9 @@ const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
     maxWidth: '100%',
+  },
+  contentContainerStyle: {
+    justifyContent: 'space-evenly',
   },
   svg: {
     maxHeight: '60%',

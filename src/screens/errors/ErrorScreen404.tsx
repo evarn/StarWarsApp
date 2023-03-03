@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
 import Colors from '../../constants/colors';
 import DeathStar_SVG from '../../../assets/icons/teamRocket.svg';
@@ -18,12 +18,14 @@ const ErrorScreen404 = () => {
 
   return (
     <SafeAreaView style={styles.mainContainer}>
-      <DeathStar_SVG style={styles.svg_DeathStar} />
-      <ERROR404_SVG style={styles.svg_404} />
+      <View style={styles.svgConatiner}>
+        <DeathStar_SVG style={styles.svg_DeathStar} />
+        <ERROR404_SVG style={styles.svg_404} />
+      </View>
+
       <AppButton
         title={Strings.ERROR_404_BUTTON_TITLE}
         onPressButton={onPressReturn}
-        styleView={styles.btn}
       />
     </SafeAreaView>
   );
@@ -32,8 +34,9 @@ const ErrorScreen404 = () => {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
+    flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     backgroundColor: Colors.BLUE_2,
     paddingHorizontal: 12,
     paddingBottom: 40,
@@ -49,9 +52,10 @@ const styles = StyleSheet.create({
     maxHeight: '30%',
     maxWidth: '50%',
   },
-  btn: {
-    position: 'absolute',
-    bottom: 35,
+  svgConatiner: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
   },
 });
 
