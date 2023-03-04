@@ -5,6 +5,7 @@ const initialState: ICard = {
   people: [],
   filterPeople: [],
   selectedPeople: null,
+  isFiltred: false,
   isLoading: false,
   count: 0,
   next: 'https://swapi.dev/api/people/?page=1',
@@ -40,6 +41,9 @@ export const characterSlice = createSlice({
     setMoreIsLoading: (state, action: PayloadAction<boolean>) => {
       state.moreIsLoading = action.payload;
     },
+    setIsFiltred: (state, action: PayloadAction<boolean>) => {
+      state.isFiltred = action.payload;
+    },
   },
 });
 
@@ -52,5 +56,6 @@ export const {
   setMoreIsLoading,
   setFilterPeople,
   setSelectedPeople,
+  setIsFiltred,
 } = characterSlice.actions;
 export default characterSlice.reducer;

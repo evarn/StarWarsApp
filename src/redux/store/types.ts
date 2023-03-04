@@ -2,6 +2,7 @@ export interface ICard {
   people: IPeopleCard[];
   filterPeople: IPeopleCard[];
   selectedPeople: IPeopleCard | null;
+  isFiltred: boolean;
   isLoading: boolean;
   count: number;
   next: string;
