@@ -5,8 +5,8 @@ import {
   View,
   Text,
   FlatList,
-  Dimensions,
   SafeAreaView,
+  TouchableOpacity,
 } from 'react-native';
 
 import Colors from '../../constants/colors';
@@ -25,6 +25,9 @@ import TitleCardScreen from './components/TitleCardScreen';
 import Strings from './../../constants/strings';
 import Fonts from './../../constants/fonts';
 import ModalCharacter from './components/modal/ModalCharacter';
+import {getWidthSizeWindows} from '../../features/getWidthSizeWindows';
+import ModalFilter from './components/modalFilter/ModalFilter';
+import AppButton from '../components/appButton/AppButton';
 
 const CardScreen = () => {
   const dispatch = useAppDispatch();
@@ -38,18 +41,15 @@ const CardScreen = () => {
     isFiltred,
   } = useAppSelector(selectCharcterData);
   const [modalVisible, setModalVisible] = useState(false);
-
+  const [modalFilterVisible, setModalFilterVisible] = useState(false);
+  const [isReset, setIsReset] = useState(true);
   useEffect(() => {
     onFetchPeople(next);
   }, []);
 
   const dataFlatlist = isFiltred ? filterPeople : people;
 
-  // Подсчёт ширины экрана и вычисление количество столбцов
-  const {width} = Dimensions.get('window');
-  const column = Math.round(width / 200);
-  const margin = 10;
-  const widthSIZE = (width - margin * column * 2) / column;
+  const {widthSIZE, column} = getWidthSizeWindows();
 
   const onFetchPeople = async (nextURL: string) => {
     if (isFiltred) {
@@ -90,6 +90,7 @@ const CardScreen = () => {
       dispatch(setMoreIsLoading(false));
     }
   };
+
   const _ListHeaderComponent = () => {
     return (
       <>{dataFlatlist.length ? <TitleCardScreen count={count} /> : undefined}</>
@@ -126,6 +127,26 @@ const CardScreen = () => {
             modalVisible={modalVisible}
             setModalVisible={setModalVisible}
           />
+          <ModalFilter
+            isReset={isReset}
+            setIsReset={setIsReset}
+            modalVisible={modalFilterVisible}
+            setModalVisible={setModalFilterVisible}
+          />
+          <_ListHeaderComponent />
+          <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
+            <AppButton
+              title={'Filter'}
+              onPressButton={() => setModalFilterVisible(true)}
+              styleView={{maxWidth: '40%', marginHorizontal: 12}}
+            />
+            <AppButton
+              title={'Reset'}
+              onPressButton={() => setIsReset(true)}
+              styleView={{maxWidth: '40%', marginHorizontal: 12}}
+            />
+          </View>
+
           <FlatList
             data={dataFlatlist}
             renderItem={({item}) => (
@@ -141,7 +162,6 @@ const CardScreen = () => {
             showsVerticalScrollIndicator={false}
             onEndReached={() => onFetchMorePeople(next)}
             onEndReachedThreshold={0.2}
-            ListHeaderComponent={_ListHeaderComponent}
             ListFooterComponent={_ListFooterComponent}
             ListEmptyComponent={_ListEmptyComponent}
           />
@@ -155,13 +175,13 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     backgroundColor: Colors.WHITE_1,
   },
   flatListView: {
     padding: 12,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   row: {
     flex: 1,
