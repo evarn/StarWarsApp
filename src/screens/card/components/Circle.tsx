@@ -1,23 +1,27 @@
 import React from 'react';
 import {StyleSheet, View, Text, StyleProp, ViewStyle} from 'react-native';
-
+import {getCheckFunction} from '../../../features/getCheckFunction';
 import Colors from '../../../constants/colors';
 import Fonts from './../../../constants/fonts';
 
 interface ICardCharacter {
   title: string;
   style?: StyleProp<ViewStyle>;
-  param: string;
+  param: string | undefined;
 }
 
 const CircleCharacter = ({title, style, param}: ICardCharacter) => {
   return (
-    <View style={styles.mainContainer}>
-      <View style={[styles.circle, style]}>
-        <Text style={styles.circleText}>{param}</Text>
-      </View>
-      <Text style={styles.titleText}>{title}</Text>
-    </View>
+    <>
+      {getCheckFunction(param) && (
+        <View style={styles.mainContainer}>
+          <View style={[styles.circle, style]}>
+            <Text style={styles.circleText}>{param}</Text>
+          </View>
+          <Text style={styles.titleText}>{title}</Text>
+        </View>
+      )}
+    </>
   );
 };
 
@@ -25,8 +29,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 12,
-    marginVertical: 12,
+    margin: 12,
   },
   circle: {
     borderColor: Colors.BLACK_1,

@@ -10,6 +10,12 @@ enum Strings {
   CHARACTERS_TITLE_TEXT_1 = ' Peoples ',
   CHARACTERS_TITLE_TEXT_2 = 'for you to choose your favorite',
   CHARACTERS_END_TEXT = 'No more characters in the moment',
-  CHARACTERS_EMPTY_TEXT = "Oops... there doesn't seem to be anything here.",
+  CHARACTERS_EMPTY_TEXT = 'Oops... Nothing seems to be found -_-',
+  INFO_MALE = 'male',
+  INFO_FEMALE = 'female',
+  INFO_MASS = 'mass',
+  INFO_HEIGHT = 'height',
+  INFO_PROPS_HAIR_COLOR = 'hair color: ',
+  INFO_PROPS_SKIN_COLOR = 'skin color: ',
 }
 export default Strings;

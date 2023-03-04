@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Dispatch} from 'react';
 import {StyleSheet, Text} from 'react-native';
 import Strings from '../../../constants/strings';
 import Colors from '../../../constants/colors';

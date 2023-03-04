@@ -1,5 +1,5 @@
 import {getListPeople} from '../../api/rest/people/people';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -24,14 +24,26 @@ import CardCharacter from './components/CardCharacter';
 import TitleCardScreen from './components/TitleCardScreen';
 import Strings from './../../constants/strings';
 import Fonts from './../../constants/fonts';
+import ModalCharacter from './components/modal/ModalCharacter';
 
 const CardScreen = () => {
   const dispatch = useAppDispatch();
-  const {isLoading, count, next, people, moreIsLoading} =
-    useAppSelector(selectCharcterData);
+  const {
+    isLoading,
+    count,
+    next,
+    moreIsLoading,
+    people,
+    filterPeople,
+    isFiltred,
+  } = useAppSelector(selectCharcterData);
+  const [modalVisible, setModalVisible] = useState(false);
+
   useEffect(() => {
     onFetchPeople(next);
   }, []);
+
+  const dataFlatlist = isFiltred ? filterPeople : people;
 
   // Подсчёт ширины экрана и вычисление количество столбцов
   const {width} = Dimensions.get('window');
@@ -40,6 +52,9 @@ const CardScreen = () => {
   const widthSIZE = (width - margin * column * 2) / column;
 
   const onFetchPeople = async (nextURL: string) => {
+    if (isFiltred) {
+      return;
+    }
     dispatch(setIsLoading(true));
     try {
       const response = await getListPeople({next: nextURL});
@@ -53,6 +68,9 @@ const CardScreen = () => {
     }
   };
   const onFetchMorePeople = async (nextURL: string) => {
+    if (isFiltred) {
+      return;
+    }
     if (nextURL === null) {
       return;
     }
@@ -72,14 +90,22 @@ const CardScreen = () => {
       dispatch(setMoreIsLoading(false));
     }
   };
-
+  const _ListHeaderComponent = () => {
+    return (
+      <>{dataFlatlist.length ? <TitleCardScreen count={count} /> : undefined}</>
+    );
+  };
   const _ListFooterComponent = () => {
     return (
       <>
-        {moreIsLoading && <LoadingIndicator />}
-        {next === null && (
-          <Text style={styles.endText}>{Strings.CHARACTERS_END_TEXT}</Text>
-        )}
+        {dataFlatlist.length ? (
+          <>
+            {moreIsLoading && <LoadingIndicator />}
+            {next === null && (
+              <Text style={styles.endText}>{Strings.CHARACTERS_END_TEXT}</Text>
+            )}
+          </>
+        ) : undefined}
       </>
     );
   };
@@ -96,10 +122,18 @@ const CardScreen = () => {
         <LoadingIndicator />
       ) : (
         <View style={styles.flatListView}>
+          <ModalCharacter
+            modalVisible={modalVisible}
+            setModalVisible={setModalVisible}
+          />
           <FlatList
-            data={people}
+            data={dataFlatlist}
             renderItem={({item}) => (
-              <CardCharacter item={item} widthSIZE={widthSIZE} />
+              <CardCharacter
+                item={item}
+                widthSIZE={widthSIZE}
+                setModalVisible={setModalVisible}
+              />
             )}
             numColumns={column}
             columnWrapperStyle={styles.row}
@@ -107,7 +141,7 @@ const CardScreen = () => {
             showsVerticalScrollIndicator={false}
             onEndReached={() => onFetchMorePeople(next)}
             onEndReachedThreshold={0.2}
-            ListHeaderComponent={<TitleCardScreen count={count} />}
+            ListHeaderComponent={_ListHeaderComponent}
             ListFooterComponent={_ListFooterComponent}
             ListEmptyComponent={_ListEmptyComponent}
           />
