@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     maxWidth: '100%',
   },
   contentContainerStyle: {
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
   },
   svg: {
     maxHeight: '60%',

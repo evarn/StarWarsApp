@@ -21,11 +21,12 @@ const CharacterTabBarIcon = () => {
 
 const RootTab = () => {
   const _headerRight = () => {
-    return <LogoSVG height={50} />;
+    return <LogoSVG height={40} />;
   };
 
   return (
     <Tab.Navigator
+      initialRouteName={Screens.HOME}
       screenOptions={{
         tabBarActiveBackgroundColor: Colors.BLUE_2,
         tabBarInactiveBackgroundColor: Colors.BLUE_3,
