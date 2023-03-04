@@ -32,14 +32,7 @@ const ModalCharacter = ({modalVisible, setModalVisible}: IModalCharacter) => {
 
   return (
     <View style={styles.mainContainer}>
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
-          setModalVisible(!modalVisible);
-        }}>
+      <Modal animationType="none" transparent={true} visible={modalVisible}>
         <TouchableOpacity
           style={styles.modalContainer}
           activeOpacity={1}
@@ -53,11 +46,11 @@ const ModalCharacter = ({modalVisible, setModalVisible}: IModalCharacter) => {
               </View>
               <View>
                 {selectedPeople?.gender === 'male' ? (
-                  <IconMaleSVG height={200} fill={'transparent'} />
+                  <IconMaleSVG height={150} fill={'transparent'} />
                 ) : selectedPeople?.gender === 'female' ? (
-                  <IconFemaleSVG height={200} />
+                  <IconFemaleSVG height={150} />
                 ) : (
-                  <UFOSVG height={200} />
+                  <UFOSVG height={150} />
                 )}
               </View>
 
@@ -79,9 +72,6 @@ const ModalCharacter = ({modalVisible, setModalVisible}: IModalCharacter) => {
                 />
                 <CircleCharacter title={'mass'} param={selectedPeople?.mass} />
               </View>
-              <Pressable onPress={() => setModalVisible(!modalVisible)}>
-                <Text>Hide Modal</Text>
-              </Pressable>
             </View>
           </TouchableWithoutFeedback>
         </TouchableOpacity>
