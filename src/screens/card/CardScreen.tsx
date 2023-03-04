@@ -24,7 +24,7 @@ import CardCharacter from './components/CardCharacter';
 import TitleCardScreen from './components/TitleCardScreen';
 import Strings from './../../constants/strings';
 import Fonts from './../../constants/fonts';
-import ModalCharacter from './components/ModalCharacter';
+import ModalCharacter from './components/modal/ModalCharacter';
 
 const CardScreen = () => {
   const dispatch = useAppDispatch();
