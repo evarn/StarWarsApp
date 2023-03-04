@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     backgroundColor: Colors.BLUE_3,
-    borderTopStartRadius: 20,
-    borderTopRightRadius: 20,
+    borderTopStartRadius: 16,
+    borderTopRightRadius: 16,
   },
 
   nameContainer: {},

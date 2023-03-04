@@ -12,7 +12,7 @@ import {
 import Colors from '../../../../constants/colors';
 import LogoCharacter from './LogoCharacter';
 import InfoCharacter from './InfoCharacter';
-
+import IconCloseSVG from '../../../../../assets/icons/closeIcon.svg';
 interface IModalCharacter {
   modalVisible?: boolean | undefined;
   setModalVisible: Dispatch<React.SetStateAction<boolean>>;
@@ -30,6 +30,15 @@ const ModalCharacter = ({modalVisible, setModalVisible}: IModalCharacter) => {
           onPressOut={() => {
             setModalVisible(false);
           }}>
+          <View style={styles.svgContainer}>
+            <IconCloseSVG
+              style={styles.svg}
+              onPress={() => {
+                setModalVisible(false);
+              }}
+            />
+          </View>
+
           <TouchableWithoutFeedback>
             <>
               <View style={styles.modalView}>
@@ -78,6 +87,13 @@ const styles = StyleSheet.create({
     elevation: 5,
     height: '60%',
     width: '80%',
+  },
+  svgContainer: {
+    width: '80%',
+    marginBottom: 8,
+  },
+  svg: {
+    alignSelf: 'flex-end',
   },
 });
 

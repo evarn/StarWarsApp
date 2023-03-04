@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 import Colors from '../../../../constants/colors';
 import CircleCharacter from '../Circle';
@@ -21,7 +22,10 @@ const InfoCharacter = ({
   mass,
 }: IInfoCharacter) => {
   return (
-    <View style={styles.infoContainer}>
+    <LinearGradient
+      colors={[Colors.BLUE_2, Colors.BLUE_3]}
+      style={styles.linearGradient}
+      locations={[0.42, 1]}>
       <InfoCharcterTitleProps hair_color={hair_color} skin_color={skin_color} />
       <View style={styles.containerCircles}>
         {getCheckFunction(height) && (
@@ -35,26 +39,27 @@ const InfoCharacter = ({
           </View>
         )}
       </View>
-    </View>
+    </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
-  infoContainer: {
+  linearGradient: {
     flex: 2,
     paddingHorizontal: 20,
     paddingVertical: 10,
     width: '100%',
     alignItems: 'center',
     backgroundColor: Colors.BLUE_2,
-    borderBottomEndRadius: 20,
-    borderBottomLeftRadius: 20,
+    borderBottomLeftRadius: 16,
+    borderBottomRightRadius: 16,
     justifyContent: 'space-around',
   },
+
   containerCircle: {
     backgroundColor: Colors.WHITE_2,
     borderRadius: 8,
-    marginHorizontal: 12,
+    marginHorizontal: 24,
   },
   containerCircles: {
     flexDirection: 'row',
