@@ -98,7 +98,9 @@ const CardScreen = () => {
       <>
         {dataFlatlist.length ? (
           <>
-            {moreIsLoading && <LoadingIndicator />}
+            {moreIsLoading && (
+              <LoadingIndicator style={{position: 'relative'}} />
+            )}
             {next === null && (
               <Text style={styles.endText}>{Strings.CHARACTERS_END_TEXT}</Text>
             )}
