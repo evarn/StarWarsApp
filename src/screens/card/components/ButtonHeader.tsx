@@ -1,8 +1,5 @@
 import React, {Dispatch} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {useAppSelector} from '../../../redux/hooks';
-import selectCharcterData from '../../../redux/store/characterSelector';
-import TitleCardScreen from './TitleCardScreen';
 import Strings from './../../../constants/strings';
 import AppButton from '../../components/appButton/AppButton';
 
@@ -12,17 +9,6 @@ interface IButtonHeader {
 }
 
 const ButtonHeader = ({setModalFilterVisible, setIsReset}: IButtonHeader) => {
-  const {count, people, filterPeople, isFiltred} =
-    useAppSelector(selectCharcterData);
-
-  const dataFlatlist = isFiltred ? filterPeople : people;
-
-  const _ListHeaderComponent = () => {
-    return (
-      <>{dataFlatlist.length ? <TitleCardScreen count={count} /> : undefined}</>
-    );
-  };
-
   return (
     <View style={styles.bntContainer}>
       <AppButton

@@ -1,13 +1,6 @@
 import {getListPeople} from '../../api/rest/people/people';
 import React, {useEffect, useState} from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  FlatList,
-  SafeAreaView,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, View, Text, FlatList, SafeAreaView} from 'react-native';
 
 import Colors from '../../constants/colors';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
@@ -27,10 +20,13 @@ import Fonts from './../../constants/fonts';
 import ModalCharacter from './components/modal/ModalCharacter';
 import {getWidthSizeWindows} from '../../features/getWidthSizeWindows';
 import ModalFilter from './components/modalFilter/ModalFilter';
-import AppButton from '../components/appButton/AppButton';
 import ButtonHeader from './components/ButtonHeader';
+import {NavigationType} from '../../navigation/types';
+import {useNavigation} from '@react-navigation/native';
+import {Screens} from '../../navigation/constants/screens';
 
 const CardScreen = () => {
+  const navigation = useNavigation<NavigationType>();
   const dispatch = useAppDispatch();
   const {
     isLoading,
@@ -63,7 +59,7 @@ const CardScreen = () => {
       dispatch(setCount(response.data.count));
       dispatch(setNext(response.data.next));
     } catch (error) {
-      console.log(error);
+      navigation.navigate(Screens.ERROR_404);
     } finally {
       dispatch(setIsLoading(false));
     }
@@ -86,7 +82,7 @@ const CardScreen = () => {
       dispatch(setCount(response.data.count));
       dispatch(setNext(response.data.next));
     } catch (error) {
-      console.log(error);
+      navigation.navigate(Screens.ERROR_404);
     } finally {
       dispatch(setMoreIsLoading(false));
     }
@@ -147,7 +143,6 @@ const CardScreen = () => {
             onEndReachedThreshold={0.2}
             ListFooterComponent={_ListFooterComponent}
             ListEmptyComponent={_ListEmptyComponent}
-            contentContainerStyle={{}}
           />
         </View>
       )}

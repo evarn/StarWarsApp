@@ -15,10 +15,21 @@ enum Strings {
   INFO_FEMALE = 'female',
   INFO_MASS = 'mass',
   INFO_HEIGHT = 'height',
+  INFO_OTHER = 'other',
   INFO_PROPS_HAIR_COLOR = 'hair color: ',
   INFO_PROPS_SKIN_COLOR = 'skin color: ',
   INFO_PROPS_EYES_COLOR = 'eye color: ',
   BUTTON_HEADER_FILTER = 'Filter',
-  BUTTON_HEADER_RESET = 'Reset'
+  BUTTON_HEADER_RESET = 'Reset',
+  DROP_PLACEHOLDER_HAIR = 'hair color',
+  DROP_PLACEHOLDER_SKIN = 'skin color',
+  DROP_PLACEHOLDER_EYES = 'eye color',
+  DROP_PLACEHOLDER_HEIGHT = 'sorting by height',
+  DROP_PLACEHOLDER_GENDER = 'gender',
+  DROP_PLACEHOLDER_MASS = 'sorting by mass',
+  DROP_PLACEHOLDER_YEAR = 'sorting by year',
+  DROP_PLACEHOLDER_UP = 'sort ascending',
+  DROP_PLACEHOLDER_DOWN = 'sort descending',
+  DROP_PLACEHOLDER_ALL = 'all'
 }
 export default Strings;
