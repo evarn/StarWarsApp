@@ -1,13 +1,6 @@
 import {getListPeople} from '../../api/rest/people/people';
 import React, {useEffect, useState} from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  FlatList,
-  Dimensions,
-  SafeAreaView,
-} from 'react-native';
+import {StyleSheet, View, Text, FlatList, SafeAreaView} from 'react-native';
 
 import Colors from '../../constants/colors';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
@@ -25,8 +18,15 @@ import TitleCardScreen from './components/TitleCardScreen';
 import Strings from './../../constants/strings';
 import Fonts from './../../constants/fonts';
 import ModalCharacter from './components/modal/ModalCharacter';
+import {getWidthSizeWindows} from '../../features/getWidthSizeWindows';
+import ModalFilter from './components/modalFilter/ModalFilter';
+import ButtonHeader from './components/ButtonHeader';
+import {NavigationType} from '../../navigation/types';
+import {useNavigation} from '@react-navigation/native';
+import {Screens} from '../../navigation/constants/screens';
 
 const CardScreen = () => {
+  const navigation = useNavigation<NavigationType>();
   const dispatch = useAppDispatch();
   const {
     isLoading,
@@ -38,18 +38,15 @@ const CardScreen = () => {
     isFiltred,
   } = useAppSelector(selectCharcterData);
   const [modalVisible, setModalVisible] = useState(false);
-
+  const [modalFilterVisible, setModalFilterVisible] = useState(false);
+  const [isReset, setIsReset] = useState(true);
   useEffect(() => {
     onFetchPeople(next);
   }, []);
 
   const dataFlatlist = isFiltred ? filterPeople : people;
 
-  // Подсчёт ширины экрана и вычисление количество столбцов
-  const {width} = Dimensions.get('window');
-  const column = Math.round(width / 200);
-  const margin = 10;
-  const widthSIZE = (width - margin * column * 2) / column;
+  const {widthSIZE, column} = getWidthSizeWindows();
 
   const onFetchPeople = async (nextURL: string) => {
     if (isFiltred) {
@@ -62,7 +59,7 @@ const CardScreen = () => {
       dispatch(setCount(response.data.count));
       dispatch(setNext(response.data.next));
     } catch (error) {
-      console.log(error);
+      navigation.navigate(Screens.ERROR_404);
     } finally {
       dispatch(setIsLoading(false));
     }
@@ -85,11 +82,12 @@ const CardScreen = () => {
       dispatch(setCount(response.data.count));
       dispatch(setNext(response.data.next));
     } catch (error) {
-      console.log(error);
+      navigation.navigate(Screens.ERROR_404);
     } finally {
       dispatch(setMoreIsLoading(false));
     }
   };
+
   const _ListHeaderComponent = () => {
     return (
       <>{dataFlatlist.length ? <TitleCardScreen count={count} /> : undefined}</>
@@ -122,10 +120,12 @@ const CardScreen = () => {
         <LoadingIndicator />
       ) : (
         <View style={styles.flatListView}>
-          <ModalCharacter
-            modalVisible={modalVisible}
-            setModalVisible={setModalVisible}
+          <_ListHeaderComponent />
+          <ButtonHeader
+            setModalFilterVisible={setModalFilterVisible}
+            setIsReset={setIsReset}
           />
+
           <FlatList
             data={dataFlatlist}
             renderItem={({item}) => (
@@ -141,12 +141,21 @@ const CardScreen = () => {
             showsVerticalScrollIndicator={false}
             onEndReached={() => onFetchMorePeople(next)}
             onEndReachedThreshold={0.2}
-            ListHeaderComponent={_ListHeaderComponent}
             ListFooterComponent={_ListFooterComponent}
             ListEmptyComponent={_ListEmptyComponent}
           />
         </View>
       )}
+      <ModalCharacter
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
+      <ModalFilter
+        isReset={isReset}
+        setIsReset={setIsReset}
+        modalVisible={modalFilterVisible}
+        setModalVisible={setModalFilterVisible}
+      />
     </SafeAreaView>
   );
 };
@@ -155,16 +164,15 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     backgroundColor: Colors.WHITE_1,
   },
   flatListView: {
     padding: 12,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
   row: {
-    flex: 1,
     justifyContent: 'space-around',
   },
   endText: {
@@ -182,6 +190,15 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: 36,
     textAlign: 'center',
+  },
+  bntConyainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
+  btn: {
+    maxWidth: '40%',
+    marginHorizontal: 12,
   },
 });
 

@@ -11,6 +11,7 @@ import InfoCharcterTitleProps from './InfoCharcterTitleProps';
 interface IInfoCharacter {
   hair_color: string | undefined;
   skin_color: string | undefined;
+  eye_color: string | undefined;
   height: string | undefined;
   mass: string | undefined;
 }
@@ -18,15 +19,20 @@ interface IInfoCharacter {
 const InfoCharacter = ({
   hair_color,
   skin_color,
+  eye_color,
   height,
   mass,
 }: IInfoCharacter) => {
   return (
     <LinearGradient
-      colors={[Colors.BLUE_2, Colors.BLUE_3]}
+      colors={[Colors.BLUE_3, Colors.BLUE_2]}
       style={styles.linearGradient}
       locations={[0.42, 1]}>
-      <InfoCharcterTitleProps hair_color={hair_color} skin_color={skin_color} />
+      <InfoCharcterTitleProps
+        hair_color={hair_color}
+        skin_color={skin_color}
+        eye_color={eye_color}
+      />
       <View style={styles.containerCircles}>
         {getCheckFunction(height) && (
           <View style={styles.containerCircle}>
@@ -45,7 +51,7 @@ const InfoCharacter = ({
 
 const styles = StyleSheet.create({
   linearGradient: {
-    flex: 2,
+    flex: 3,
     paddingHorizontal: 20,
     paddingVertical: 10,
     width: '100%',

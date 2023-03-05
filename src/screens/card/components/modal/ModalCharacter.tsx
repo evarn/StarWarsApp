@@ -24,12 +24,7 @@ const ModalCharacter = ({modalVisible, setModalVisible}: IModalCharacter) => {
   return (
     <View style={styles.mainContainer}>
       <Modal animationType="none" transparent={true} visible={modalVisible}>
-        <TouchableOpacity
-          style={styles.modalContainer}
-          activeOpacity={1}
-          onPressOut={() => {
-            setModalVisible(false);
-          }}>
+        <TouchableOpacity style={styles.modalContainer} activeOpacity={1}>
           <View style={styles.svgContainer}>
             <IconCloseSVG
               style={styles.svg}
@@ -50,6 +45,7 @@ const ModalCharacter = ({modalVisible, setModalVisible}: IModalCharacter) => {
                 <InfoCharacter
                   hair_color={selectedPeople?.hair_color}
                   skin_color={selectedPeople?.skin_color}
+                  eye_color={selectedPeople?.eye_color}
                   height={selectedPeople?.height}
                   mass={selectedPeople?.mass}
                 />
@@ -85,7 +81,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    height: '60%',
+    height: '70%',
     width: '80%',
   },
   svgContainer: {
