@@ -17,5 +17,8 @@ enum Strings {
   INFO_HEIGHT = 'height',
   INFO_PROPS_HAIR_COLOR = 'hair color: ',
   INFO_PROPS_SKIN_COLOR = 'skin color: ',
+  INFO_PROPS_EYES_COLOR = 'eye color: ',
+  BUTTON_HEADER_FILTER = 'Filter',
+  BUTTON_HEADER_RESET = 'Reset'
 }
 export default Strings;

@@ -28,6 +28,7 @@ import ModalCharacter from './components/modal/ModalCharacter';
 import {getWidthSizeWindows} from '../../features/getWidthSizeWindows';
 import ModalFilter from './components/modalFilter/ModalFilter';
 import AppButton from '../components/appButton/AppButton';
+import ButtonHeader from './components/ButtonHeader';
 
 const CardScreen = () => {
   const dispatch = useAppDispatch();
@@ -123,29 +124,11 @@ const CardScreen = () => {
         <LoadingIndicator />
       ) : (
         <View style={styles.flatListView}>
-          <ModalCharacter
-            modalVisible={modalVisible}
-            setModalVisible={setModalVisible}
-          />
-          <ModalFilter
-            isReset={isReset}
-            setIsReset={setIsReset}
-            modalVisible={modalFilterVisible}
-            setModalVisible={setModalFilterVisible}
-          />
           <_ListHeaderComponent />
-          <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
-            <AppButton
-              title={'Filter'}
-              onPressButton={() => setModalFilterVisible(true)}
-              styleView={{maxWidth: '40%', marginHorizontal: 12}}
-            />
-            <AppButton
-              title={'Reset'}
-              onPressButton={() => setIsReset(true)}
-              styleView={{maxWidth: '40%', marginHorizontal: 12}}
-            />
-          </View>
+          <ButtonHeader
+            setModalFilterVisible={setModalFilterVisible}
+            setIsReset={setIsReset}
+          />
 
           <FlatList
             data={dataFlatlist}
@@ -164,9 +147,20 @@ const CardScreen = () => {
             onEndReachedThreshold={0.2}
             ListFooterComponent={_ListFooterComponent}
             ListEmptyComponent={_ListEmptyComponent}
+            contentContainerStyle={{}}
           />
         </View>
       )}
+      <ModalCharacter
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
+      <ModalFilter
+        isReset={isReset}
+        setIsReset={setIsReset}
+        modalVisible={modalFilterVisible}
+        setModalVisible={setModalFilterVisible}
+      />
     </SafeAreaView>
   );
 };
@@ -181,10 +175,9 @@ const styles = StyleSheet.create({
   flatListView: {
     padding: 12,
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
   },
   row: {
-    flex: 1,
     justifyContent: 'space-around',
   },
   endText: {
@@ -202,6 +195,15 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: 36,
     textAlign: 'center',
+  },
+  bntConyainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
+  btn: {
+    maxWidth: '40%',
+    marginHorizontal: 12,
   },
 });
 

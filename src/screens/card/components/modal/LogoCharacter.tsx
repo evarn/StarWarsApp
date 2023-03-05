@@ -55,7 +55,7 @@ const LogoCharacter = ({
 
 const styles = StyleSheet.create({
   logoContainer: {
-    flex: 3,
+    flex: 4,
     paddingHorizontal: 20,
     paddingVertical: 10,
     width: '100%',

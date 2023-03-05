@@ -26,6 +26,7 @@ import IconCloseSVG from '../../../../../assets/icons/closeIcon.svg';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Strings from '../../../../constants/strings';
 import AppButton from '../../../../screens/components/appButton/AppButton';
+import {getLabelFromData} from '../../../../features/getLabelFromData';
 interface IModalCharacter {
   modalVisible?: boolean | undefined;
   setModalVisible: Dispatch<React.SetStateAction<boolean>>;
@@ -49,60 +50,83 @@ const ModalFilter = ({
     isFiltred,
   } = useAppSelector(selectCharcterData);
   const dispatch = useAppDispatch();
-  const [open, setOpen] = useState(false);
-  const [valueHair, setValue] = useState(null);
-  const [items, setItems] = useState([
+  const [openHair, setOpenHair] = useState(false);
+  const [valueHair, setValueHair] = useState(null);
+  const [itemsHair, setItemsHair] = useState([
     {label: 'blond', value: 'blond'},
-    {label: 'Banana', value: 'banana'},
   ]);
+  const [openSkin, setOpenSkin] = useState(false);
+  const [valueSkin, setValueSkin] = useState(null);
+  const [itemsSkin, setItemsSkin] = useState([
+    {label: 'blond', value: 'blond'},
+  ]);
+
   useEffect(() => {
-    const arr = getLabelHair();
-    setItems(arr);
-    console.log(arr);
+    if (!people.length) {
+      return;
+    }
+    const hair_color = getLabelFromData({
+      people: people,
+      atribute: 'hair_color',
+    });
+    const skin_color = getLabelFromData({
+      people: people,
+      atribute: 'skin_color',
+    });
+
+    setItemsHair(hair_color);
+    setItemsSkin(skin_color);
+    console.log(skin_color);
+    console.log(hair_color);
   }, [people]);
 
   useEffect(() => {
     if (isReset) {
-      setValue(null);
-      setOpen(false);
-      dispatch(setFilterPeople([]))
-      dispatch(setIsFiltred(false))
-      
+      setValueHair(null);
+      setOpenHair(false);
+      setValueSkin(null);
+      setOpenHair(false);
+      dispatch(setFilterPeople([]));
+      dispatch(setIsFiltred(false));
     }
-  }, [isReset]);
+  }, [dispatch, isReset]);
 
-  const getLabelHair = () => {
-    let arr: string[] = [];
-    people.map(item => {
-      arr.push(item.hair_color);
-    });
-    const newSet = new Set(arr);
-    newSet.delete('none');
-    newSet.delete('n/a');
-    const newAr = Array.from(newSet);
-    let newValue = [];
-    newValue.push({
-      label: 'all',
-      value: 'all',
-    });
-    for (let i = 0; i < newAr.length; i++) {
-      newValue.push({
-        label: `${newAr[i]}`,
-        value: `${newAr[i]}`,
+  const onFiltred = () => {
+    console.log('valueHair', valueHair);
+    console.log('valueSkin', valueSkin);
+    setIsReset(false);
+    setModalVisible(false);
+    let list = [];
+    if (valueHair !== null) {
+      if (valueHair === 'all') {
+        dispatch(setFilterPeople([]));
+        dispatch(setIsFiltred(false));
+        return;
+      }
+      list = people.filter(item => {
+        return item.hair_color === valueHair;
       });
     }
 
-    return newValue;
-  };
-  const onFiltred = () => {
-    setIsReset(false);
-    setModalVisible(false);
-    if (valueHair === 'all') {
-      return dispatch(setFilterPeople([])), dispatch(setIsFiltred(false));
+    console.log('valueHair', list);
+
+    if (valueSkin !== null) {
+      if (valueSkin === 'all') {
+        dispatch(setFilterPeople([]));
+        dispatch(setIsFiltred(false));
+        return;
+      }
+
+      if (list.length === 0) {
+        list = people.filter(item => {
+          return item.skin_color === valueSkin;
+        });
+      } else {
+        list = list.filter(item => {
+          return item.skin_color === valueSkin;
+        });
+      }
     }
-    const list = people.filter(item => {
-      return item.hair_color === valueHair;
-    });
     console.log(list);
     dispatch(setFilterPeople(list));
     dispatch(setIsFiltred(true));
@@ -110,12 +134,7 @@ const ModalFilter = ({
   return (
     <View style={styles.mainContainer}>
       <Modal animationType="none" transparent={true} visible={modalVisible}>
-        <TouchableOpacity
-          style={styles.modalContainer}
-          activeOpacity={1}
-          onPressOut={() => {
-            setModalVisible(false);
-          }}>
+        <TouchableOpacity style={styles.modalContainer} activeOpacity={1}>
           <View style={styles.svgContainer}>
             <IconCloseSVG
               style={styles.svg}
@@ -128,23 +147,32 @@ const ModalFilter = ({
           <TouchableWithoutFeedback>
             <>
               <View style={styles.modalView}>
-                <View
-                  style={{
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    zIndex: 10,
-                  }}>
+                <View style={[styles.viewDropDown, {zIndex: 3}]}>
                   <Text>{Strings.INFO_PROPS_HAIR_COLOR}</Text>
                   <DropDownPicker
-                    open={open}
+                    open={openHair}
                     value={valueHair}
-                    items={items}
-                    setOpen={setOpen}
-                    setValue={setValue}
-                    setItems={setItems}
-                    containerStyle={{maxWidth: '100%'}}
+                    items={itemsHair}
+                    setOpen={setOpenHair}
+                    setValue={setValueHair}
+                    setItems={setItemsHair}
+                    containerStyle={styles.containerStyleDropDown}
                   />
                 </View>
+
+                <View style={styles.viewDropDown}>
+                  <Text>{Strings.INFO_PROPS_SKIN_COLOR}</Text>
+                  <DropDownPicker
+                    open={openSkin}
+                    value={valueSkin}
+                    items={itemsSkin}
+                    setOpen={setOpenSkin}
+                    setValue={setValueSkin}
+                    setItems={setItemsSkin}
+                    containerStyle={styles.containerStyleDropDown}
+                  />
+                </View>
+
                 <AppButton title={'Filtred'} onPressButton={onFiltred} />
               </View>
             </>
@@ -179,7 +207,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    height: '60%',
+    height: '70%',
     width: '80%',
     borderRadius: 16,
     padding: 16,
@@ -190,6 +218,14 @@ const styles = StyleSheet.create({
   },
   svg: {
     alignSelf: 'flex-end',
+  },
+  viewDropDown: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 2,
+  },
+  containerStyleDropDown: {
+    maxWidth: '100%',
   },
 });
 

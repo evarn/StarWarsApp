@@ -9,11 +9,13 @@ import Fonts from './../../../../constants/fonts';
 interface IInfoTitlePropsCharacter {
   hair_color: string | undefined;
   skin_color: string | undefined;
+  eye_color: string | undefined;
 }
 
 const InfoCharcterTitleProps = ({
   hair_color,
   skin_color,
+  eye_color,
 }: IInfoTitlePropsCharacter) => {
   return (
     <View style={styles.containerProps}>
@@ -27,6 +29,12 @@ const InfoCharcterTitleProps = ({
         <Text style={styles.text}>
           <Text>{Strings.INFO_PROPS_SKIN_COLOR}</Text>
           <Text>{skin_color}</Text>
+        </Text>
+      )}
+      {getCheckFunction(eye_color) && (
+        <Text style={styles.text}>
+          <Text>{Strings.INFO_PROPS_EYES_COLOR}</Text>
+          <Text>{eye_color}</Text>
         </Text>
       )}
     </View>
