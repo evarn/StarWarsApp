@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CircleCharacter CircleCharacter snapshoot 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "justifyContent": "center",
+      "margin": 12,
+    }
+  }
+>
+  <View
+    style={
+      [
+        {
+          "alignItems": "center",
+          "borderColor": "#000000",
+          "borderRadius": 27,
+          "borderWidth": 3,
+          "height": 54,
+          "justifyContent": "center",
+          "width": 54,
+        },
+        {
+          "backgroundColor": "#000000",
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#212121",
+          "fontFamily": "Karla",
+          "fontSize": 15,
+          "fontStyle": "normal",
+          "fontWeight": "400",
+        }
+      }
+    >
+      50
+    </Text>
+  </View>
+  <Text
+    style={
+      {
+        "color": "#4B4B4B",
+        "fontFamily": "Karla",
+        "fontSize": 12,
+        "fontStyle": "normal",
+        "fontWeight": "400",
+        "marginTop": 4,
+        "textAlign": "center",
+      }
+    }
+  >
+    mass
+  </Text>
+</View>
+`;

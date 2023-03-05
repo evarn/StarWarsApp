@@ -13,13 +13,16 @@ const AgeGenderView = ({birth_year, gender}: IAgeGenderView) => {
   return (
     <View style={styles.mainContainer}>
       {getCheckFunction(birth_year) && (
-        <View style={[styles.viewChar, {backgroundColor: Colors.BLUE_1}]}>
+        <View
+          style={[styles.viewChar, {backgroundColor: Colors.BLUE_1}]}
+          testID="AgeGenderViewYear">
           <Text style={styles.textChar}>{birth_year} </Text>
         </View>
       )}
 
       {getCheckFunction(gender) && (
         <View
+          testID="AgeGenderViewGender"
           style={[
             styles.viewChar,
             {

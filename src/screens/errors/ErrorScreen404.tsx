@@ -10,8 +10,8 @@ import Strings from './../../constants/strings';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import AppButton from '../components/appButton/AppButton';
 
-const ErrorScreen404 = () => {
-  const navigation = useNavigation<NavigationType>();
+const ErrorScreen404 = ({navigation}) => {
+  //const navigation = useNavigation<NavigationType>();
   const onPressReturn = () => {
     navigation.goBack();
   };
@@ -26,6 +26,7 @@ const ErrorScreen404 = () => {
       <AppButton
         title={Strings.ERROR_404_BUTTON_TITLE}
         onPressButton={onPressReturn}
+        testID={'ErrorButton'}
       />
     </SafeAreaView>
   );

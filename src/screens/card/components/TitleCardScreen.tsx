@@ -1,4 +1,4 @@
-import React, {Dispatch} from 'react';
+import React from 'react';
 import {StyleSheet, Text} from 'react-native';
 import Strings from '../../../constants/strings';
 import Colors from '../../../constants/colors';
@@ -11,7 +11,11 @@ interface ITitleCardScreen {
 const TitleCardScreen = ({count}: ITitleCardScreen) => {
   return (
     <Text style={styles.viewTitle}>
-      <Text style={[styles.textTitle, styles.textTitleBold]}>{count}</Text>
+      <Text
+        style={[styles.textTitle, styles.textTitleBold]}
+        testID={'TitleCardScreenText'}>
+        {count}
+      </Text>
       <Text style={[styles.textTitle, styles.textTitleBold]}>
         {Strings.CHARACTERS_TITLE_TEXT_1}
       </Text>

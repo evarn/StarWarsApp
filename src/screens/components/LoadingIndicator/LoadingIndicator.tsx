@@ -1,10 +1,19 @@
 import React from 'react';
-import {StyleSheet, ActivityIndicator, View} from 'react-native';
+import {
+  StyleSheet,
+  ActivityIndicator,
+  View,
+  StyleProp,
+  ViewStyle,
+} from 'react-native';
 import Colors from '../../../constants/colors';
+interface ILoadingIndicator {
+  style?: StyleProp<ViewStyle>;
+}
 
-const LoadingIndicator = () => {
+const LoadingIndicator = ({style}: ILoadingIndicator) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <ActivityIndicator size="large" color={Colors.YELLOW_1} />
     </View>
   );

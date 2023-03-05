@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TitleCardScreen TitleCardScreen snapshoot 1`] = `
+<Text
+  style={
+    {
+      "marginTop": 8,
+      "textAlign": "center",
+    }
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "color": "#000000",
+          "fontFamily": "Karla",
+          "fontSize": 30,
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "letterSpacing": 3,
+        },
+        {
+          "fontWeight": "700",
+        },
+      ]
+    }
+    testID="TitleCardScreenText"
+  >
+    0
+  </Text>
+  <Text
+    style={
+      [
+        {
+          "color": "#000000",
+          "fontFamily": "Karla",
+          "fontSize": 30,
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "letterSpacing": 3,
+        },
+        {
+          "fontWeight": "700",
+        },
+      ]
+    }
+  >
+     Peoples 
+  </Text>
+  <Text
+    style={
+      {
+        "color": "#000000",
+        "fontFamily": "Karla",
+        "fontSize": 30,
+        "fontStyle": "normal",
+        "fontWeight": "400",
+        "letterSpacing": 3,
+      }
+    }
+  >
+    for you to choose your favorite
+  </Text>
+</Text>
+`;
