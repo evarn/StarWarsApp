@@ -14,11 +14,15 @@ interface IAppButton {
   title: string;
   onPressButton?: ((event: GestureResponderEvent) => void) | undefined;
   styleView?: StyleProp<ViewStyle>;
+  testID?: string | undefined;
 }
 
-const AppButton = ({title, onPressButton, styleView}: IAppButton) => {
+const AppButton = ({title, onPressButton, styleView, testID}: IAppButton) => {
   return (
-    <TouchableOpacity style={[styles.btn, styleView]} onPress={onPressButton}>
+    <TouchableOpacity
+      style={[styles.btn, styleView]}
+      onPress={onPressButton}
+      testID={testID}>
       <Text style={styles.text_btn}>{title}</Text>
     </TouchableOpacity>
   );

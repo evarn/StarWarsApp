@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InfoCharacter InfoCharacter snapshoot 1`] = `
+<BVLinearGradient
+  colors={
+    [
+      4280232547,
+      4279697455,
+    ]
+  }
+  endPoint={
+    {
+      "x": 0.5,
+      "y": 1,
+    }
+  }
+  locations={
+    [
+      0.42,
+      1,
+    ]
+  }
+  startPoint={
+    {
+      "x": 0.5,
+      "y": 0,
+    }
+  }
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#17002F",
+      "borderBottomLeftRadius": 16,
+      "borderBottomRightRadius": 16,
+      "flex": 3,
+      "justifyContent": "space-around",
+      "paddingHorizontal": 20,
+      "paddingVertical": 10,
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      {
+        "backgroundColor": "#FDFDFD",
+        "borderRadius": 8,
+        "margin": 8,
+        "padding": 8,
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#000000",
+          "fontFamily": "Karla",
+          "fontSize": 16,
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "lineHeight": 19,
+        }
+      }
+    >
+      <Text>
+        hair color: 
+      </Text>
+      <Text>
+        blond
+      </Text>
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#000000",
+          "fontFamily": "Karla",
+          "fontSize": 16,
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "lineHeight": 19,
+        }
+      }
+    >
+      <Text>
+        skin color: 
+      </Text>
+      <Text>
+        blond
+      </Text>
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+      }
+    }
+  />
+</BVLinearGradient>
+`;
